@@ -1,0 +1,10 @@
+#protected files
+.github/
+.chart/
+deployment.yaml
+
+#other
+coverage
+dist
+node_modules
+webpack.config.js
