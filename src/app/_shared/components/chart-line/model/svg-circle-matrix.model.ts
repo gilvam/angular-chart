@@ -1,15 +1,27 @@
 import { SvgCircle } from './svg.circle.model';
 import { SvgTextList } from './svg-text-matrix.model';
+import { ChartCircleSizeEnum } from './chart-circle-size.enum';
+import { SvgGeneric } from './svg-generic.model';
 
-export class SvgCircleList {
+export class SvgCircleList extends SvgGeneric {
 	private _matrix: SvgCircle[][];
 
 	constructor(svgCircleMatrix: SvgCircle[][] = []) {
+		super();
 		this._matrix = svgCircleMatrix;
 	}
 
-	setData(data: [key: string, value: number][][]): SvgCircleList {
-		this._matrix = data.map((row) => row.map((it) => new SvgCircle(it.at(0), it.at(1))));
+	setData(data: (string | number)[][], xLabels: string[]): SvgCircleList {
+		if (!data.every((row) => row.length <= xLabels.length)) {
+			throw new Error('The length of @Input() xLabels does not match the length of the @Input() data');
+		}
+		const dataFilled = data.map((row) => [...row, ...Array(xLabels.length - row.length).fill(0)]);
+		this._matrix = dataFilled.map((row) => row.map((it, i) => new SvgCircle(xLabels[i], it)));
+		return this;
+	}
+
+	setRadius(radius: ChartCircleSizeEnum): SvgCircleList {
+		this._matrix.forEach((row) => row.forEach((circle) => circle.setR(radius)));
 		return this;
 	}
 
@@ -26,28 +38,19 @@ export class SvgCircleList {
 		return this;
 	}
 
-	private yNormalize(y: number, yLabels: number[], height: number, gap: number): number {
-		const minY = Math.min(...yLabels);
-		const maxY = Math.max(...yLabels);
-		const normalizedY = (y - minY) / (maxY - minY);
-		return height - normalizedY * (height - gap * 2) - gap;
-	}
-
 	calc(svgTextX: SvgTextList, yLabels: number[], height: number, gap: number): SvgCircleList {
-		const averageCharWidth = 8;
-
 		this._matrix = this._matrix.map((row) =>
 			row.map((circle) => {
 				const labelX = svgTextX.findXByDescription(circle.dataX);
-				const width = circle.dataX.length * averageCharWidth;
-				const cx = labelX - width / 2 + averageCharWidth * circle.dataX.length;
+				const textWidth = circle.dataX.length * this.fontSize;
+				const cx = labelX + textWidth / 2;
 				const cy = this.yNormalize(circle.dataY, yLabels, height, gap);
 				return new SvgCircle(circle.dataX, circle.dataY, cx, cy, circle.r, circle.strokeWidth, circle.color);
 			}),
 		);
-
 		return this;
 	}
+
 	get matrix() {
 		return this._matrix;
 	}

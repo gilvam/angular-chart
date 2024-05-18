@@ -2,11 +2,13 @@ export class SvgTextModel {
 	x: number;
 	y: number;
 	description: string | number;
+	textAnchor: 'middle' | 'start' | 'end' = 'start';
 
-	constructor(x = 0, y = 0, description: string | number = '') {
+	constructor(x = 0, y = 0, description: string | number = '', textAnchor: 'middle' | 'start' | 'end' = 'start') {
 		this.x = x;
 		this.y = y;
 		this.description = description;
+		this.textAnchor = textAnchor;
 	}
 
 	get descriptionLowerCase(): string {

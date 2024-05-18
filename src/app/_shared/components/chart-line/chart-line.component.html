@@ -1,4 +1,6 @@
-<svg class="graph" aria-labelledby="title" role="img" [attr.width]="width" [attr.height]="height">
+<svg class="graph"
+     [attr.width]="width"
+     [attr.height]="height">
 
 	<g class="graph__line-horizontal--dashed">
 		<line
@@ -16,7 +18,7 @@
 	</g>
 
 	<g class="graph__text-vertical">
-		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y">{{ text.description }}</text>
+		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="text.textAnchor">{{ text.description }}</text>
 	</g>
 
 	<ng-container *ngFor="let row of svgLineMatrix.matrix; let i = index">
