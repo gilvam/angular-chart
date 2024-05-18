@@ -45,13 +45,6 @@
         // ESLint rules
         "prettier/prettier": "error",
         "camelcase": ["error", {"allow": ["/^[_][A-Z0-9]*$/"] }]
-        //"sort-imports": ["error", {
-        //  "ignoreCase": false,
-        //  "ignoreDeclarationSort": false,
-        //  "ignoreMemberSort": false,
-        //  "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-        //  "allowSeparatedGroups": false
-        //}],
       }
     },
     {

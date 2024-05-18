@@ -1,0 +1,45 @@
+<svg class="graph" aria-labelledby="title" role="img" [attr.width]="width" [attr.height]="height">
+
+	<g class="graph__horizontal-line">
+		<line
+			*ngFor="let line of svgLine"
+			[attr.x1]="line.x1"
+			[attr.y1]="line.y1"
+			[attr.x2]="line.x2"
+			[attr.y2]="line.y2"
+			[attr.stroke-dasharray]="line.strokeDasharray"
+		></line>
+	</g>
+
+	<g class="graph__text-x">
+		<text *ngFor="let text of svgTextX.list" [attr.x]="text.x" [attr.y]="text.y">{{ text.description }}</text>
+	</g>
+
+	<g class="graph__text-y">
+		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y">{{ text.description }}</text>
+	</g>
+
+	<ng-container *ngFor="let row of lineMatrix; let i = index">
+		<g class="graph__data">
+			<line
+				*ngFor="let pointer of row"
+				[attr.x1]="pointer.x1"
+				[attr.y1]="pointer.y1"
+				[attr.x2]="pointer.x2"
+				[attr.y2]="pointer.y2"
+				[attr.stroke]="pointer.color"
+				stroke="black"
+			/>
+			<circle
+				*ngFor="let circle of circleMatrix[i]"
+				[attr.cx]="circle.cx"
+				[attr.cy]="circle.cy"
+				[attr.data-value]="circle.data.y"
+				[attr.r]="circle.r"
+				[attr.stroke]="circle.attr.color"
+				[attr.stroke-width]="circle.attr.strokeWidth"
+			/>
+		</g>
+	</ng-container>
+
+</svg>

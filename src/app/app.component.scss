@@ -1,0 +1,27 @@
+$gap: 10px;
+
+:host {
+	background: darkgrey;
+	width: calc(100vw - $gap * 2);
+	height: calc(100vh - $gap * 2);
+	display: flex;
+	flex-wrap: wrap;
+	padding: $gap;
+	gap: $gap;
+
+	> div {
+		background: lightgray;
+		flex-grow: 1;
+		flex-basis: 300px;
+		padding: $gap;
+
+		> * {
+			background: cadetblue;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+}
