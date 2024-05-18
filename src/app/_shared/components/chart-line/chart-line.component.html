@@ -1,25 +1,25 @@
 <svg class="graph" aria-labelledby="title" role="img" [attr.width]="width" [attr.height]="height">
 
-	<g class="graph__horizontal-line">
+	<g class="graph__line-horizontal--dashed">
 		<line
-			*ngFor="let line of svgLine"
+			*ngFor="let line of svgLineDashed"
 			[attr.x1]="line.x1"
 			[attr.y1]="line.y1"
 			[attr.x2]="line.x2"
 			[attr.y2]="line.y2"
 			[attr.stroke-dasharray]="line.strokeDasharray"
-		></line>
+		/>
 	</g>
 
-	<g class="graph__text-x">
+	<g class="graph__text-horizontal">
 		<text *ngFor="let text of svgTextX.list" [attr.x]="text.x" [attr.y]="text.y">{{ text.description }}</text>
 	</g>
 
-	<g class="graph__text-y">
+	<g class="graph__text-vertical">
 		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y">{{ text.description }}</text>
 	</g>
 
-	<ng-container *ngFor="let row of lineMatrix; let i = index">
+	<ng-container *ngFor="let row of svgLineMatrix.matrix; let i = index">
 		<g class="graph__data">
 			<line
 				*ngFor="let pointer of row"
@@ -31,13 +31,13 @@
 				stroke="black"
 			/>
 			<circle
-				*ngFor="let circle of circleMatrix[i]"
+				*ngFor="let circle of svgCircleMatrix.matrix[i]"
 				[attr.cx]="circle.cx"
 				[attr.cy]="circle.cy"
-				[attr.data-value]="circle.data.y"
+				[attr.data-value]="circle.dataY"
 				[attr.r]="circle.r"
-				[attr.stroke]="circle.attr.color"
-				[attr.stroke-width]="circle.attr.strokeWidth"
+				[attr.stroke]="circle.color"
+				[attr.stroke-width]="circle.strokeWidth"
 			/>
 		</g>
 	</ng-container>

@@ -1,9 +1,9 @@
 .graph {
 	background: white;
 
-	.graph__x,
-	.graph__y,
-	.graph__line {
+	.graph__horizontal,
+	.graph__vertical,
+	.graph__line-horizontal--dashed {
 		stroke: #ccc;
 		stroke-dasharray: 0;
 		stroke-width: 1;
@@ -11,9 +11,5 @@
 
 	.graph__data {
 		fill: white;
-	}
-
-	.graph__horizontal-line {
-		stroke: #dbdbdb;
 	}
 }
