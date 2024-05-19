@@ -24,8 +24,8 @@ export class SvgLine extends SvgGeneric {
 	calc(conf: ChartConfig, y: number): SvgLine {
 		this.x1 = conf.gap;
 		this.x2 = conf.width - conf.gap - conf.widthYText;
-		this.y1 = y - this.fontHeight;
-		this.y2 = y - this.fontHeight;
+		this.y1 = y - conf.fontHeight;
+		this.y2 = y - conf.fontHeight;
 		return this;
 	}
 

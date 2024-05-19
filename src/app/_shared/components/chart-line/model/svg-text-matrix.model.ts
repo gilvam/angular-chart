@@ -1,11 +1,11 @@
-import { SvgTextModel } from './svg-text.model';
+import { SvgText } from './svg-text.model';
 import { SvgGeneric } from './svg-generic.model';
 import { ChartConfig } from './chart-config.model';
 
 export class SvgTextList extends SvgGeneric {
-	private _list: SvgTextModel[];
+	private _list: SvgText[];
 
-	constructor(list: SvgTextModel[] = []) {
+	constructor(list: SvgText[] = []) {
 		super();
 		this._list = list;
 	}
@@ -26,7 +26,7 @@ export class SvgTextList extends SvgGeneric {
 		this._list = xLabels.map((desc, i) => {
 			const x = conf.gap + i * step;
 			const y = conf.height - conf.gap + conf.gap / 4;
-			return new SvgTextModel(x, y, desc);
+			return new SvgText(x, y, desc);
 		});
 
 		return this;
@@ -35,8 +35,8 @@ export class SvgTextList extends SvgGeneric {
 	calcY(conf: ChartConfig, yLabels: number[]): SvgTextList {
 		this._list = yLabels.map((value) => {
 			const x = conf.width - conf.gap - conf.gap / 3;
-			const y = this.yNormalize(value, yLabels, conf.height, conf.gap) + this.fontHeight;
-			return new SvgTextModel(x, y, value);
+			const y = this.yNormalize(value, yLabels, conf.height, conf.gap) + conf.fontHeight;
+			return new SvgText(x, y, value);
 		});
 		return this;
 	}

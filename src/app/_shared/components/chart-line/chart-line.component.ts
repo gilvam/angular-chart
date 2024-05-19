@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
-import { SvgCircleList } from './model/svg-circle-matrix.model';
+import { SvgCircleMatrix } from './model/svg-circle-matrix.model';
 import { SvgTextList } from './model/svg-text-matrix.model';
 import { SvgLine } from './model/svg-line.model';
-import { SvgLineList } from './model/svg-line-matrix.model';
+import { SvgLineMatrix } from './model/svg-line-matrix.model';
 import { ChartCircleSizeEnum } from './model/chart-circle-size.enum';
 import { ChartConfig } from './model/chart-config.model';
 
@@ -29,8 +29,8 @@ export class ChartLineComponent implements OnInit {
 	svgTextX = new SvgTextList();
 	svgTextY = new SvgTextList();
 	svgLineDashed: SvgLine[] = [];
-	svgCircleMatrix = new SvgCircleList();
-	svgLineMatrix = new SvgLineList();
+	svgCircleMatrix = new SvgCircleMatrix();
+	svgLineMatrix = new SvgLineMatrix();
 
 	ngOnInit(): void {
 		this.init();
@@ -51,7 +51,7 @@ export class ChartLineComponent implements OnInit {
 		this.svgLineDashed = this.svgTextY.list.map((it) =>
 			new SvgLine().setStrokeWidth(this.strokeWidth).calc(chartConfig, it.y),
 		);
-		this.svgCircleMatrix = new SvgCircleList()
+		this.svgCircleMatrix = new SvgCircleMatrix()
 			.setData(this.data, this.xLabels)
 			.setRadius(this.circleSize)
 			.setColorByArray(this.colors)

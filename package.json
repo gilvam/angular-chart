@@ -7,6 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:watch": "npm run test -- --watch=true",
+    "test:coverage": "npm run test -- --code-coverage",
+    "test:coverage:watch": "npm run test:coverage -- --watch=true",
+    "test:e2e": "ng e2e",
+    "serve:ssr": "node dist/angular-chart/server/main.js",
     "serve:ssr:angular-chart": "node dist/angular-chart/server/server.mjs",
     "lint": "ng lint",
     "prepare": "husky"

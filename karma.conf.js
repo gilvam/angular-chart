@@ -3,16 +3,18 @@
 
 module.exports = function (config) {
 	config.set({
-		basePath: "",
-		frameworks: ["jasmine", "@angular-devkit/build-angular"],
+		basePath: '',
+		frameworks: ['jasmine', '@angular-devkit/build-angular'],
 		plugins: [
-			require("karma-jasmine"),
-			require("karma-chrome-launcher"),
-			require("karma-jasmine-html-reporter"),
-			require("karma-coverage"),
-			require("@angular-devkit/build-angular/plugins/karma"),
-			"karma-spec-reporter",
+			require('karma-jasmine'),
+			require('karma-chrome-launcher'),
+			require('karma-jasmine-html-reporter'),
+			require('karma-coverage'),
+			require('@angular-devkit/build-angular/plugins/karma'),
+			'karma-spec-reporter',
 		],
+		files: ['src/**/*.spec.ts'],
+		logLevel: config.LOG_INFO,
 		client: {
 			jasmine: {
 				// you can add configuration options for Jasmine here
@@ -26,19 +28,19 @@ module.exports = function (config) {
 			suppressAll: true, // removes the duplicated traces
 		},
 		coverageReporter: {
-			dir: require("path").join(__dirname, "./coverage/angular-chart"),
-			subdir: ".",
-			reporters: [{ type: "html" }, { type: "text-summary" }, { type: "lcovonly" }],
+			dir: require('path').join(__dirname, './coverage/angular-chart'),
+			subdir: '.',
+			reporters: [{ type: 'html' }, { type: 'text-summary' }, { type: 'lcovonly' }],
 		},
-		browsers: ["ChromeHeadlessNoSandbox"],
-		reporters: ["spec", "kjhtml"],
+		browsers: ['ChromeHeadlessNoSandbox'],
+		reporters: ['spec', 'kjhtml'],
 		restartOnFileChange: true,
 		singleRun: true,
-		skipFileWithNoCoverage: true,
+		skipFileWithNoCoverage: false,
 		customLaunchers: {
 			ChromeHeadlessNoSandbox: {
-				base: "ChromeHeadless",
-				flags: ["--no-sandbox"],
+				base: 'ChromeHeadless',
+				flags: ['--no-sandbox'],
 			},
 		},
 	});

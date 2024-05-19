@@ -9,6 +9,7 @@ export class ChartConfig {
 	strokeWidth: number;
 
 	readonly fontWidthSize = 6.68;
+	readonly fontHeight = 4;
 	widthYText: number;
 
 	constructor(
@@ -18,7 +19,7 @@ export class ChartConfig {
 		colors: string[],
 		gap: number,
 		strokeWidth: number,
-		xLabels: number[],
+		yLabels: number[],
 	) {
 		this.width = width;
 		this.height = height;
@@ -26,7 +27,7 @@ export class ChartConfig {
 		this.colors = colors;
 		this.gap = gap;
 		this.strokeWidth = strokeWidth;
-		this.widthYText = this.checkWidthYText(xLabels);
+		this.widthYText = this.checkWidthYText(yLabels);
 	}
 
 	private checkWidthYText(list: (number | string)[]) {

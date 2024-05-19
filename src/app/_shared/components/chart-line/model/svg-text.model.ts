@@ -1,8 +1,8 @@
-export class SvgTextModel {
+export class SvgText {
 	x: number;
 	y: number;
 	description: string | number;
-	textAnchor: 'middle' | 'start' | 'end' = 'start';
+	textAnchor: 'middle' | 'start' | 'end';
 
 	constructor(x = 0, y = 0, description: string | number = '', textAnchor: 'middle' | 'start' | 'end' = 'start') {
 		this.x = x;
