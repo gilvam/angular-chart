@@ -2,6 +2,7 @@ import { SvgCircle } from './svg.circle.model';
 import { SvgTextList } from './svg-text-matrix.model';
 import { ChartCircleSizeEnum } from './chart-circle-size.enum';
 import { SvgGeneric } from './svg-generic.model';
+import { ChartConfig } from './chart-config.model';
 
 export class SvgCircleList extends SvgGeneric {
 	private _matrix: SvgCircle[][];
@@ -38,12 +39,11 @@ export class SvgCircleList extends SvgGeneric {
 		return this;
 	}
 
-	calc(svgTextX: SvgTextList, yLabels: number[], height: number, gap: number): SvgCircleList {
+	calc(conf: ChartConfig, svgTextX: SvgTextList, yLabels: number[], height: number, gap: number): SvgCircleList {
 		this._matrix = this._matrix.map((row) =>
 			row.map((circle) => {
 				const labelX = svgTextX.findXByDescription(circle.dataX);
-				const textWidth = circle.dataX.length * this.fontSize;
-				const cx = labelX + textWidth / 2;
+				const cx = labelX - conf.gap + conf.widthYText + conf.widthYText / 2;
 				const cy = this.yNormalize(circle.dataY, yLabels, height, gap);
 				return new SvgCircle(circle.dataX, circle.dataY, cx, cy, circle.r, circle.strokeWidth, circle.color);
 			}),

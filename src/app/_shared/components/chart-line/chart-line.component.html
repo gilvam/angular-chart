@@ -14,17 +14,17 @@
 	</g>
 
 	<g class="graph__text-horizontal">
-		<text *ngFor="let text of svgTextX.list" [attr.x]="text.x" [attr.y]="text.y">{{ text.description }}</text>
+		<text *ngFor="let text of svgTextX.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="'middle'">{{ text.description }}</text>
 	</g>
 
 	<g class="graph__text-vertical">
 		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="text.textAnchor">{{ text.description }}</text>
 	</g>
 
-	<ng-container *ngFor="let row of svgLineMatrix.matrix; let i = index">
+	<ng-container *ngFor="let row of svgCircleMatrix.matrix; let i = index">
 		<g class="graph__data">
 			<line
-				*ngFor="let pointer of row"
+				*ngFor="let pointer of svgLineMatrix.matrix[i]"
 				[attr.x1]="pointer.x1"
 				[attr.y1]="pointer.y1"
 				[attr.x2]="pointer.x2"
@@ -33,7 +33,7 @@
 				[attr.stroke-width]="pointer.strokeWidth"
 			/>
 			<circle
-				*ngFor="let circle of svgCircleMatrix.matrix[i]"
+				*ngFor="let circle of row"
 				[attr.cx]="circle.cx"
 				[attr.cy]="circle.cy"
 				[attr.data-value]="circle.dataY"

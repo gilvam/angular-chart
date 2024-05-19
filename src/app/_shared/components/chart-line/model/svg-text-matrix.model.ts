@@ -20,11 +20,15 @@ export class SvgTextList extends SvgGeneric {
 	}
 
 	calcX(conf: ChartConfig, xLabels: string[]): SvgTextList {
+		const availableWidth = conf.width - conf.gap * 2 - conf.widthYText;
+		const step = availableWidth / (xLabels.length - 1);
+
 		this._list = xLabels.map((desc, i) => {
-			const x = conf.gap + i * ((conf.width - conf.gap * 4 + conf.gap / 2) / (xLabels.length - 1));
+			const x = conf.gap + i * step;
 			const y = conf.height - conf.gap + conf.gap / 4;
 			return new SvgTextModel(x, y, desc);
 		});
+
 		return this;
 	}
 

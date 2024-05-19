@@ -44,6 +44,7 @@ export class ChartLineComponent implements OnInit {
 			this.colors,
 			this.gap,
 			this.strokeWidth,
+			this.yLabels,
 		);
 		this.svgTextX.calcX(chartConfig, this.xLabels);
 		this.svgTextY.calcY(chartConfig, this.yLabels);
@@ -54,7 +55,7 @@ export class ChartLineComponent implements OnInit {
 			.setData(this.data, this.xLabels)
 			.setRadius(this.circleSize)
 			.setColorByArray(this.colors)
-			.calc(this.svgTextX, this.yLabels, this.height, this.gap);
+			.calc(chartConfig, this.svgTextX, this.yLabels, this.height, this.gap);
 		this.svgLineMatrix.calc(this.svgCircleMatrix);
 	}
 }
