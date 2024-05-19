@@ -1,17 +1,20 @@
-.graph {
-	background: white;
+:host {
 	font-family: 'Roboto', 'Open Sans', sans-serif;
 	font-size: 12px;
 
-	.graph__horizontal,
-	.graph__vertical,
-	.graph__line-horizontal--dashed {
-		stroke: #ccc;
-		stroke-dasharray: 0;
-		stroke-width: 1;
-	}
+	.graph {
+		background: white;
 
-	.graph__data {
-		fill: white;
+		.graph__horizontal,
+		.graph__vertical,
+		.graph__line-horizontal--dashed {
+			stroke: #ccc;
+			stroke-dasharray: 0;
+			stroke-width: 1;
+		}
+
+		.graph__data {
+			fill: white;
+		}
 	}
 }
