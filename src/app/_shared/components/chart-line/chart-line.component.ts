@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
-import { ChartPosition } from './model/chart-position.enum';
 import { SvgCircleList } from './model/svg-circle-matrix.model';
 import { SvgTextList } from './model/svg-text-matrix.model';
 import { SvgLine } from './model/svg-line.model';
 import { SvgLineList } from './model/svg-line-matrix.model';
 import { ChartCircleSizeEnum } from './model/chart-circle-size.enum';
+import { ChartConfig } from './model/chart-config.model';
 
 @Component({
 	selector: 'app-chart-line',
@@ -17,30 +17,15 @@ import { ChartCircleSizeEnum } from './model/chart-circle-size.enum';
 export class ChartLineComponent implements OnInit {
 	@Input() width = 600;
 	@Input() height = 400;
-	@Input() xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	@Input() yLabels = [0, 100, 200, 300, 400, 500, 600];
-	@Input() yLabelPosition = ChartPosition.RIGHT;
-	@Input() circleSize = ChartCircleSizeEnum.SMALL;
-	@Input() colors = [
-		'#2d63d7',
-		'#4bbd4b',
-		'#FFA500',
-		'#800080',
-		'#40E0D0',
-		'#A52A2A',
-		'#808080',
-		'#FF6F61',
-		'#0F52BA',
-		'#50C878',
-		'#4B0082',
-		'#FFBF00',
-	];
-	@Input() data: (string | number)[][] = [
-		[0, 170.2, 180.1, 170.7, 200, 500, 600, 600],
-		[50.01, 100.2, 280.1, 370.7, 360.8, 500.7, 0],
-		[50, 100, 250, 300, 390, 300, 20, '10'],
-	];
-	gap = 30;
+	@Input() circleSize: ChartCircleSizeEnum = ChartCircleSizeEnum.SMALL;
+	@Input() xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	@Input() colors = ['#2d63d7', '#4bbd4b', '#FFA500', '#800080', '#A52A2A', '#FF6F61', '#0F52BA', '#50C878'];
+	@Input() data: (string | number)[][] = [[0, 20]];
+
+	private gap = 30;
+	private strokeWidth = 1;
+
 	svgTextX = new SvgTextList();
 	svgTextY = new SvgTextList();
 	svgLineDashed: SvgLine[] = [];
@@ -52,10 +37,18 @@ export class ChartLineComponent implements OnInit {
 	}
 
 	private init(): void {
-		this.svgTextX.calcX(this.width, this.height, this.gap, this.yLabelPosition, this.xLabels);
-		this.svgTextY.calcY(this.width, this.height, this.gap, this.yLabelPosition, this.yLabels);
+		const chartConfig = new ChartConfig(
+			this.width,
+			this.height,
+			this.circleSize,
+			this.colors,
+			this.gap,
+			this.strokeWidth,
+		);
+		this.svgTextX.calcX(chartConfig, this.xLabels);
+		this.svgTextY.calcY(chartConfig, this.yLabels);
 		this.svgLineDashed = this.svgTextY.list.map((it) =>
-			new SvgLine().calc(it.y, this.width, this.gap, this.yLabelPosition),
+			new SvgLine().setStrokeWidth(this.strokeWidth).calc(chartConfig, it.y),
 		);
 		this.svgCircleMatrix = new SvgCircleList()
 			.setData(this.data, this.xLabels)
