@@ -1,0 +1,18 @@
+<svg [attr.width]="width" [attr.height]="height">
+	<g [attr.transform]="centerTranslation">
+		<path *ngFor="let segment of segments" [attr.fill]="segment.color" [attr.d]="segment.d"></path>
+		<ng-container *ngFor="let segment of segments">
+			<text
+				[attr.x]="segment.labelPosition.x"
+				[attr.y]="segment.labelPosition.y"
+				[attr.transform]="
+					'rotate(' + segment.rotation + ' ' + segment.labelPosition.x + ' ' + segment.labelPosition.y + ')'
+				"
+				text-anchor="middle"
+				alignment-baseline="baseline"
+			>
+				{{ segment.value }}%
+			</text>
+		</ng-container>
+	</g>
+</svg>
