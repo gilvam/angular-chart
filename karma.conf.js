@@ -13,7 +13,7 @@ module.exports = function (config) {
 			require('@angular-devkit/build-angular/plugins/karma'),
 			'karma-spec-reporter',
 		],
-		files: ['src/**/*.spec.ts'],
+		files: [{ pattern: 'src/**/*.spec.ts', type: 'js' }],
 		logLevel: config.LOG_INFO,
 		client: {
 			jasmine: {

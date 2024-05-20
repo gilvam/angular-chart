@@ -1,5 +1,5 @@
-import { ChartCircleSizeEnum } from '../../../../app/_shared/components/chart-line/model/chart-circle-size.enum';
-import { ChartConfig } from '../../../../app/_shared/components/chart-line/model/chart-config.model';
+import { ChartLineCircleSizeEnum } from '@shared/components/chart-line/model/chart-line-circle-size.enum';
+import { ChartLineConfig } from '@shared/components/chart-line/model/chart-line-config.model';
 import { mockYLabels } from './chart-y-text.mock';
 
 export const mockChartData = [
@@ -9,4 +9,12 @@ export const mockChartData = [
 ];
 export const mockChartDataSmall = [[0, 10, 20]];
 
-export const mockChartConfig = new ChartConfig(300, 200, ChartCircleSizeEnum.LARGE, ['blue'], 10, 3, mockYLabels);
+export const mockChartConfig = new ChartLineConfig(
+	300,
+	200,
+	ChartLineCircleSizeEnum.LARGE,
+	['blue'],
+	10,
+	3,
+	mockYLabels,
+);

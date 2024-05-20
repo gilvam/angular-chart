@@ -1,8 +1,8 @@
-import { SvgCircle } from './svg-circle.model';
+import { ChartLineSvgCircle } from './chart-line-svg-circle.model';
 
-describe('SvgCircle', () => {
+describe('ChartLineSvgCircle', () => {
 	it('should be create default', () => {
-		const test = new SvgCircle();
+		const test = new ChartLineSvgCircle();
 
 		expect(test.dataX).toEqual('');
 		expect(test.cx).toEqual(0);
@@ -14,7 +14,7 @@ describe('SvgCircle', () => {
 	});
 
 	it('should be set and get correct values', () => {
-		const test = new SvgCircle();
+		const test = new ChartLineSvgCircle();
 
 		test.setR(10);
 		test.setColor('black');

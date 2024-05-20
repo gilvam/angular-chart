@@ -1,9 +1,9 @@
-import { ChartCircleSizeEnum } from './chart-circle-size.enum';
+import { ChartLineCircleSizeEnum } from './chart-line-circle-size.enum';
 
 export class ChartLineConfig {
 	width: number;
 	height: number;
-	circleSize: ChartCircleSizeEnum;
+	circleSize: ChartLineCircleSizeEnum;
 	colors: string[];
 	gap: number;
 	strokeWidth: number;
@@ -15,7 +15,7 @@ export class ChartLineConfig {
 	constructor(
 		width: number,
 		height: number,
-		circleSize: ChartCircleSizeEnum,
+		circleSize: ChartLineCircleSizeEnum,
 		colors: string[],
 		gap: number,
 		strokeWidth: number,

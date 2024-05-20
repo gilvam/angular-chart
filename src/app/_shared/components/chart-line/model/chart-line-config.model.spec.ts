@@ -1,10 +1,10 @@
-import { ChartLineConfig } from './chart-config.model';
-import { ChartCircleSizeEnum } from './chart-circle-size.enum';
+import { ChartLineConfig } from './chart-line-config.model';
+import { ChartLineCircleSizeEnum } from './chart-line-circle-size.enum';
 
-describe('ChartConfig', () => {
+describe('ChartLineConfig', () => {
 	const width = 800;
 	const height = 600;
-	const circleSize = ChartCircleSizeEnum.SMALL;
+	const circleSize = ChartLineCircleSizeEnum.SMALL;
 	const colors = ['#000000', '#FFFFFF'];
 	const gap = 30;
 	const strokeWidth = 2;

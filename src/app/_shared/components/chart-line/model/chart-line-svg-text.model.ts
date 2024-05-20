@@ -1,4 +1,4 @@
-export class SvgText {
+export class ChartLineSvgText {
 	x: number;
 	y: number;
 	description: string | number;

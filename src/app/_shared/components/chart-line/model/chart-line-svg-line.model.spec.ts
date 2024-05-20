@@ -1,21 +1,21 @@
-import { SvgLine } from './svg-line.model';
+import { ChartLineSvgLine } from './chart-line-svg-line.model';
 import { mockChartConfig } from '@mock/tests/chart-line/chart-config.mock';
 
-describe('SvgLine', () => {
+describe('ChartLineSvgLine', () => {
 	it('should be create default', () => {
-		const test = new SvgLine();
+		const test = new ChartLineSvgLine();
 
 		expect(test.x1).toEqual(0);
 		expect(test.y1).toEqual(0);
 		expect(test.x2).toEqual(0);
 		expect(test.y2).toEqual(0);
-		expect(test.color).toEqual('black');
+		expect(test.color).toEqual('#ddd');
 		expect(test.strokeDasharray).toEqual(3);
-		expect(test.strokeWidth).toEqual(2);
+		expect(test.strokeWidth).toEqual(1);
 	});
 
 	it('should be set strokeWidth', () => {
-		const test = new SvgLine();
+		const test = new ChartLineSvgLine();
 
 		test.setStrokeWidth(10);
 
@@ -23,7 +23,7 @@ describe('SvgLine', () => {
 	});
 
 	it('should be calc line matrix correctly', () => {
-		const test = new SvgLine();
+		const test = new ChartLineSvgLine();
 		const y = 10;
 
 		const response = test.calc(mockChartConfig, y);

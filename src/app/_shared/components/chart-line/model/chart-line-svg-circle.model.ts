@@ -1,12 +1,12 @@
-import { ChartCircleSizeEnum } from './chart-circle-size.enum';
+import { ChartLineCircleSizeEnum } from './chart-line-circle-size.enum';
 
-export class SvgCircle {
+export class ChartLineSvgCircle {
 	readonly dataX: string;
 	readonly cx: number;
 	readonly cy: number;
 	readonly dataY: number;
-	readonly strokeWidth: number;
-	private _r: ChartCircleSizeEnum;
+	private _strokeWidth: number;
+	private _r: ChartLineCircleSizeEnum;
 	private _color: string;
 
 	constructor(
@@ -14,7 +14,7 @@ export class SvgCircle {
 		dataY?: string | number,
 		cx = 0,
 		cy = 0,
-		r = ChartCircleSizeEnum.MEDIUM,
+		r = ChartLineCircleSizeEnum.MEDIUM,
 		strokeWidth = 2,
 		color = 'gray',
 	) {
@@ -24,7 +24,7 @@ export class SvgCircle {
 		this.cy = cy;
 		this._r = r;
 		this._color = color;
-		this.strokeWidth = strokeWidth;
+		this._strokeWidth = strokeWidth;
 	}
 
 	setColor(color: string) {
@@ -34,6 +34,15 @@ export class SvgCircle {
 	setR(value: number) {
 		this._r = value;
 	}
+
+	get strokeWidth(): number {
+		return this._strokeWidth;
+	}
+
+	setStrokeWidth(value: number) {
+		this._strokeWidth = value;
+	}
+
 	get r(): number {
 		return this._r;
 	}

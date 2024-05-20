@@ -1,7 +1,7 @@
-import { SvgGeneric } from './svg-generic.model';
-import { ChartConfig } from './chart-config.model';
+import { ChartLineSvgGeneric } from './chart-line-svg-generic.model';
+import { ChartLineConfig } from './chart-line-config.model';
 
-export class SvgLine extends SvgGeneric {
+export class ChartLineSvgLine extends ChartLineSvgGeneric {
 	x1: number;
 	y1: number;
 	x2: number;
@@ -10,7 +10,7 @@ export class SvgLine extends SvgGeneric {
 	strokeDasharray: number;
 	private _strokeWidth: number;
 
-	constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0, color = 'black', strokeDasharray = 3, strokeWidth = 2) {
+	constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0, color = '#ddd', strokeDasharray = 3, strokeWidth = 1) {
 		super();
 		this.x1 = x1;
 		this.y1 = y1;
@@ -21,7 +21,7 @@ export class SvgLine extends SvgGeneric {
 		this._strokeWidth = strokeWidth;
 	}
 
-	calc(conf: ChartConfig, y: number): SvgLine {
+	calc(conf: ChartLineConfig, y: number): ChartLineSvgLine {
 		this.x1 = conf.gap;
 		this.x2 = conf.width - conf.gap - conf.widthYText;
 		this.y1 = y - conf.fontHeight;
@@ -33,7 +33,7 @@ export class SvgLine extends SvgGeneric {
 		return this._strokeWidth;
 	}
 
-	setStrokeWidth(value: number): SvgLine {
+	setStrokeWidth(value: number): ChartLineSvgLine {
 		this._strokeWidth = value;
 		return this;
 	}

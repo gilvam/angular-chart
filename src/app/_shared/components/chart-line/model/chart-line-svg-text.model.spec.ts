@@ -1,8 +1,8 @@
-import { SvgText } from './svg-text.model';
+import { ChartLineSvgText } from './chart-line-svg-text.model';
 
-describe('SvgText', () => {
+describe('ChartLineSvgText', () => {
 	it('should be create default', () => {
-		const test = new SvgText();
+		const test = new ChartLineSvgText();
 
 		expect(test.x).toEqual(0);
 		expect(test.y).toEqual(0);
@@ -11,7 +11,7 @@ describe('SvgText', () => {
 	});
 
 	it('should be description in lowerCase', () => {
-		const test = new SvgText(1, 2, 'DESC');
+		const test = new ChartLineSvgText(1, 2, 'DESC');
 
 		expect(test.descriptionLowerCase).toEqual('desc');
 	});

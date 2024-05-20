@@ -1,4 +1,4 @@
-export class SvgGeneric {
+export class ChartLineSvgGeneric {
 	protected yNormalize(y: number, yLabels: number[], height: number, gap: number): number {
 		const [minY, maxY] = [Math.min(...yLabels), Math.max(...yLabels)];
 		const normalizedY = (y - minY) / (maxY - minY);

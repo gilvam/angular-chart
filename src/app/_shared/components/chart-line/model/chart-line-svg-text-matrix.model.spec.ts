@@ -1,18 +1,18 @@
-import { SvgTextList } from './svg-text-matrix.model';
+import { ChartLineSvgTextList } from './chart-line-svg-text-matrix.model';
 import { mockSvgTextList } from '@mock/tests/chart-line/svg-text.mock';
 import { mockChartConfig } from '@mock/tests/chart-line/chart-config.mock';
 import { mockXLabels } from '@mock/tests/chart-line/chart-x-text.mock';
 import { mockYLabels } from '@mock/tests/chart-line/chart-y-text.mock';
 
-describe('SvgTextList', () => {
+describe('ChartLineSvgTextList', () => {
 	it('should be create default', () => {
-		const test = new SvgTextList(mockSvgTextList);
+		const test = new ChartLineSvgTextList(mockSvgTextList);
 
 		expect(test.list).toEqual(mockSvgTextList);
 	});
 
 	it('should be find horizontal value "x" by description', () => {
-		const test = new SvgTextList(mockSvgTextList);
+		const test = new ChartLineSvgTextList(mockSvgTextList);
 
 		const response = test.findXByDescription('description 1');
 
@@ -20,7 +20,7 @@ describe('SvgTextList', () => {
 	});
 
 	it('should be find horizontal value "x" by description without value', () => {
-		const test = new SvgTextList(mockSvgTextList);
+		const test = new ChartLineSvgTextList(mockSvgTextList);
 
 		const response = test.findXByDescription('x');
 
@@ -28,7 +28,7 @@ describe('SvgTextList', () => {
 	});
 
 	it('should be calc x value correctly', () => {
-		const test = new SvgTextList(mockSvgTextList);
+		const test = new ChartLineSvgTextList(mockSvgTextList);
 
 		const response = test.calcX(mockChartConfig, mockXLabels);
 
@@ -42,7 +42,7 @@ describe('SvgTextList', () => {
 	});
 
 	it('should be calc y value correctly', () => {
-		const test = new SvgTextList(mockSvgTextList);
+		const test = new ChartLineSvgTextList(mockSvgTextList);
 
 		const response = test.calcY(mockChartConfig, mockYLabels);
 
