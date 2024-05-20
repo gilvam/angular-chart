@@ -2,7 +2,9 @@
 	<app-chart-line
 		[width]="400"
 		[height]="300"
-		[colors]="['#2d63d7', '#4bbd4b', '#FFA500', '#800080', '#A52A2A', '#FF6F61', '#0F52BA', '#50C878']"
+		[circleSize]="6"
+		[gap]="30"
+		[colors]="['#2d63d7', '#4bbd4b', '#FFA500', '#FF6F61', '#0F52BA', '#50C878', '#A52A2A']"
 		[xLabels]="['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']"
 		[yLabels]="[0, 100, 200, 300, 400, 500, 600]"
 		[data]="[
@@ -10,18 +12,28 @@
 			[50.01, 100.2, 280.1, 370.7, 360.8, 500.7, 0],
 			[50, 100, 250, 300, 390, 300, 20, '10']
 		]"
-		[circleSize]="6"
 	/>
 </div>
 
 <div>
 	<app-chart-donut-half
-		[data]="[
-			{ color: '#2d63d7', value: 10, text: '100' },
-			{ color: '#4bbd4b', value: 20, text: '200' },
-			{ color: '#FFA500', value: 30, text: '300' },
-			{ color: '#50C878', value: 40, text: '400' }
-		]"
+		[width]="400"
+		[height]="300"
+		[thickness]="40"
+		[gapBetweenSegments]="4"
+		[showSegmentData]="true"
+		[gap]="10"
+		[spaceBetweenLetters]="3"
+		[colors]="['#2d63d7', '#4bbd4b', '#FFA500', '#FF6F61', '#0F52BA', '#50C878', '#A52A2A']"
+		[data]="{
+			title: 'Better performance!',
+			list: [
+				{ percentage: 10, text: '100' },
+				{ percentage: 20, text: '200' },
+				{ percentage: 30, text: '300' },
+				{ percentage: 40, text: '400' }
+			]
+		}"
 	/>
 </div>
 

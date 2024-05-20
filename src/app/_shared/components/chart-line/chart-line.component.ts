@@ -22,6 +22,7 @@ export class ChartLineComponent implements OnInit {
 	@Input() xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	@Input() colors = ['#2d63d7', '#4bbd4b', '#FFA500', '#800080', '#A52A2A', '#FF6F61', '#0F52BA', '#50C878'];
 	@Input() data: (string | number)[][] = [[0, 20]];
+	@Input() gap = 30;
 
 	svgTextX = new ChartLineSvgTextList();
 	svgTextY = new ChartLineSvgTextList();
@@ -29,7 +30,6 @@ export class ChartLineComponent implements OnInit {
 	svgCircleMatrix = new ChartLineSvgCircleMatrix();
 	svgLineMatrix = new ChartLineSvgLineMatrix();
 
-	private gap = 30;
 	private strokeWidth = 2;
 
 	ngOnInit(): void {

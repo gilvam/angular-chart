@@ -5,5 +5,23 @@
 
 	.graph {
 		background: white;
+
+		&__segment-text {
+			fill: white;
+		}
+
+		&__title,
+		&__sum {
+			font-weight: 400;
+		}
+
+		&__title {
+			font-size: 17px;
+			fill: #ff6f61;
+		}
+		&__sum {
+			font-size: 26px;
+			fill: #ff6f61;
+		}
 	}
 }
