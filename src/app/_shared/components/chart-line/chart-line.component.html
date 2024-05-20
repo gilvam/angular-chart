@@ -1,7 +1,4 @@
-<svg class="graph"
-     [attr.width]="width"
-     [attr.height]="height">
-
+<svg class="graph" [attr.width]="width" [attr.height]="height">
 	<g class="graph__line-horizontal--dashed">
 		<line
 			*ngFor="let line of svgLineDashed"
@@ -14,11 +11,15 @@
 	</g>
 
 	<g class="graph__text-horizontal">
-		<text *ngFor="let text of svgTextX.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="'middle'">{{ text.description }}</text>
+		<text *ngFor="let text of svgTextX.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="'middle'">
+			{{ text.description }}
+		</text>
 	</g>
 
 	<g class="graph__text-vertical">
-		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="text.textAnchor">{{ text.description }}</text>
+		<text *ngFor="let text of svgTextY.list" [attr.x]="text.x" [attr.y]="text.y" [attr.text-anchor]="text.textAnchor">
+			{{ text.description }}
+		</text>
 	</g>
 
 	<ng-container *ngFor="let row of svgCircleMatrix.matrix; let i = index">
@@ -43,5 +44,4 @@
 			/>
 		</g>
 	</ng-container>
-
 </svg>

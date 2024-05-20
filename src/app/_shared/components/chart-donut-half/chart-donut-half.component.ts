@@ -5,8 +5,7 @@ interface Segment {
 	color: string;
 	value: number;
 	d: string;
-	labelPosition: { x: number; y: number };
-	rotation: number;
+	letters: { letter: string; position: PolarCoordinates; rotation: number }[];
 }
 
 interface PolarCoordinates {
@@ -23,8 +22,8 @@ interface PolarCoordinates {
 })
 export class ChartDonutHalfComponent implements OnInit {
 	@Input() values: { color: string; value: number }[] = [];
-	@Input() width = 300;
-	@Input() height = 150;
+	@Input() width = 400;
+	@Input() height = 200;
 	@Input() thickness = 40;
 
 	radius = 0;
@@ -47,16 +46,13 @@ export class ChartDonutHalfComponent implements OnInit {
 		let startAngle = -90;
 		for (const entry of this.values) {
 			const endAngle = startAngle + (180 * entry.value) / 100;
-			const labelAngle = (startAngle + endAngle) / 2;
-			const labelPosition = this.polarToCartesian(0, 0, this.radius - this.thickness / 2, labelAngle);
-			const labelYOffset = this.thickness / 6;
-			labelPosition.y += labelYOffset;
+			const letters = this.calculateLetterPositions(entry.value + '%', startAngle, endAngle);
+
 			this.segments.push({
 				color: entry.color,
 				value: entry.value,
 				d: this.describeArc(startAngle, endAngle),
-				labelPosition: labelPosition,
-				rotation: labelAngle,
+				letters: letters,
 			});
 			startAngle = endAngle;
 		}
@@ -79,34 +75,36 @@ export class ChartDonutHalfComponent implements OnInit {
 		const end = this.polarToCartesian(0, 0, this.radius, startAngle);
 		const innerStart = this.polarToCartesian(0, 0, this.innerRadius, endAngle);
 		const innerEnd = this.polarToCartesian(0, 0, this.innerRadius, startAngle);
-
 		const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
-
 		const outerArc = `M${start.x},${start.y} A${this.radius},${this.radius} 0 ${largeArcFlag} 0 ${end.x},${end.y}`;
 		const innerArc = `L${innerEnd.x},${innerEnd.y} A${this.innerRadius},${this.innerRadius} 0 ${largeArcFlag} 1 ${innerStart.x},${innerStart.y} Z`;
 
 		return `${outerArc} ${innerArc}`;
 	}
+
 	calculateLetterPositions(
 		text: string,
-		labelPosition: PolarCoordinates,
-		rotation: number,
+		startAngle: number,
+		endAngle: number,
 	): { letter: string; position: PolarCoordinates; rotation: number }[] {
-		const letterPositions: { letter: string; position: PolarCoordinates; rotation: number }[] = [];
-		const letterCount = text.length;
-		const letterAngleIncrement = 180 / (letterCount - 1);
+		const letters: { letter: string; position: PolarCoordinates; rotation: number }[] = [];
+		const radius = this.radius - this.thickness / 2;
+		const totalLetters = text.replace('%', '').length;
+		const spaceBetweenLetters = 3.5;
+		const midAngle = (startAngle + endAngle) / 2;
+		let currentAngle = midAngle - ((totalLetters - 1) * spaceBetweenLetters) / 2;
 
-		for (let i = 0; i < letterCount; i++) {
-			const letter = text[i];
-			const letterRotation = rotation - 90 + i * letterAngleIncrement;
-			const letterPosition = this.polarToCartesian(labelPosition.x, labelPosition.y, 0, letterRotation);
-			letterPositions.push({
-				letter: letter,
-				position: letterPosition,
-				rotation: letterRotation,
+		for (let i = 0; i < text.length; i++) {
+			const position = this.polarToCartesian(0, 0, radius, currentAngle);
+
+			letters.push({
+				letter: text[i],
+				position: position,
+				rotation: currentAngle,
 			});
+			currentAngle += spaceBetweenLetters;
 		}
 
-		return letterPositions;
+		return letters;
 	}
 }
