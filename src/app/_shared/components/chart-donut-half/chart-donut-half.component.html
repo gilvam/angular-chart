@@ -1,18 +1,16 @@
 <svg class="graph" [attr.width]="width" [attr.height]="height">
-	<g [attr.transform]="centerTranslation">
-		<path *ngFor="let segment of segments" [attr.fill]="segment.color" [attr.d]="segment.d"></path>
-		<ng-container *ngFor="let segment of segments">
-			<ng-container *ngFor="let letter of segment.letters">
-				<text
-					[attr.x]="letter.position.x"
-					[attr.y]="letter.position.y"
-					[attr.transform]="'rotate(' + letter.rotation + ' ' + letter.position.x + ' ' + letter.position.y + ')'"
-					text-anchor="middle"
-					alignment-baseline="middle"
-				>
-					{{ letter.letter }}
-				</text>
-			</ng-container>
+	<path *ngFor="let segment of segments" [attr.fill]="segment.color" [attr.d]="segment.d"></path>
+	<ng-container *ngFor="let segment of segments">
+		<ng-container *ngFor="let letter of segment.letters">
+			<text
+				[attr.x]="letter.position.x"
+				[attr.y]="letter.position.y"
+				[attr.transform]="'rotate(' + letter.rotation + ' ' + letter.position.x + ' ' + letter.position.y + ')'"
+				text-anchor="middle"
+				alignment-baseline="middle"
+			>
+				{{ letter.letter }}
+			</text>
 		</ng-container>
-	</g>
+	</ng-container>
 </svg>

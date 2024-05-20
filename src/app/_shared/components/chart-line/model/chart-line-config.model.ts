@@ -1,16 +1,16 @@
 import { ChartCircleSizeEnum } from './chart-circle-size.enum';
 
-export class ChartConfig {
+export class ChartLineConfig {
 	width: number;
 	height: number;
 	circleSize: ChartCircleSizeEnum;
 	colors: string[];
 	gap: number;
 	strokeWidth: number;
+	widthYText: number;
 
 	readonly fontWidthSize = 6.68;
 	readonly fontHeight = 4;
-	widthYText: number;
 
 	constructor(
 		width: number,

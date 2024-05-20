@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 
 interface Segment {
 	color: string;
 	value: number;
 	d: string;
-	letters: { letter: string; position: PolarCoordinates; rotation: number }[];
+	letters?: { letter: string; position: PolarCoordinates; rotation: number }[];
 }
 
 interface PolarCoordinates {
@@ -16,20 +16,25 @@ interface PolarCoordinates {
 @Component({
 	selector: 'app-chart-donut-half',
 	standalone: true,
-	imports: [NgForOf],
+	imports: [NgForOf, NgIf],
 	templateUrl: './chart-donut-half.component.html',
 	styleUrl: './chart-donut-half.component.scss',
 })
 export class ChartDonutHalfComponent implements OnInit {
-	@Input() values: { color: string; value: number }[] = [];
+	@Input() data: { color: string; value: number; text: string }[] = [];
 	@Input() width = 400;
-	@Input() height = 200;
-	@Input() thickness = 40;
+	@Input() height = 300;
+	@Input() thickness = 20;
+	@Input() gapBetweenSegments = 4;
+	@Input() showSegmentData = true;
 
 	radius = 0;
 	innerRadius = 0;
-	centerTranslation = '';
+	centerX = 0;
+	centerY = 0;
 	segments: Segment[] = [];
+
+	private gap = 10;
 
 	ngOnInit() {
 		this.calculateDimensions();
@@ -37,24 +42,38 @@ export class ChartDonutHalfComponent implements OnInit {
 	}
 
 	calculateDimensions() {
-		this.radius = this.width / 2 - this.thickness / 2;
+		this.radius = Math.min(
+			(this.width - this.gap * 2) / 2 - this.thickness / 2,
+			this.height - this.gap - this.thickness / 2,
+		);
 		this.innerRadius = this.radius - this.thickness;
-		this.centerTranslation = `translate(${this.width / 2}, ${this.height})`;
+		this.centerX = this.width / 2;
+		const totalChartHeight = this.radius + this.thickness / 2;
+		this.centerY = (this.height + totalChartHeight) / 2 - this.gap / 2;
 	}
 
 	calculateSegments() {
+		const totalGapAngle = (this.gapBetweenSegments / this.radius) * (180 / Math.PI);
 		let startAngle = -90;
-		for (const entry of this.values) {
-			const endAngle = startAngle + (180 * entry.value) / 100;
-			const letters = this.calculateLetterPositions(entry.value + '%', startAngle, endAngle);
 
-			this.segments.push({
+		for (const entry of this.data) {
+			const adjustedStartAngle = startAngle + totalGapAngle / 2;
+			const segmentAngle = (180 * entry.value) / 100 - totalGapAngle;
+			const adjustedEndAngle = adjustedStartAngle + segmentAngle;
+
+			const segment: Segment = {
 				color: entry.color,
 				value: entry.value,
-				d: this.describeArc(startAngle, endAngle),
-				letters: letters,
-			});
-			startAngle = endAngle;
+				d: this.describeArc(adjustedStartAngle, adjustedEndAngle),
+			};
+
+			if (this.showSegmentData) {
+				segment.letters = this.calculateLetterPositions(entry.text, adjustedStartAngle, adjustedEndAngle);
+			}
+
+			this.segments.push(segment);
+
+			startAngle = adjustedEndAngle + totalGapAngle / 2;
 		}
 	}
 
@@ -71,11 +90,13 @@ export class ChartDonutHalfComponent implements OnInit {
 	}
 
 	describeArc(startAngle: number, endAngle: number): string {
-		const start = this.polarToCartesian(0, 0, this.radius, endAngle);
-		const end = this.polarToCartesian(0, 0, this.radius, startAngle);
-		const innerStart = this.polarToCartesian(0, 0, this.innerRadius, endAngle);
-		const innerEnd = this.polarToCartesian(0, 0, this.innerRadius, startAngle);
+		const start = this.polarToCartesian(this.centerX, this.centerY, this.radius, endAngle);
+		const end = this.polarToCartesian(this.centerX, this.centerY, this.radius, startAngle);
+		const innerStart = this.polarToCartesian(this.centerX, this.centerY, this.innerRadius, endAngle);
+		const innerEnd = this.polarToCartesian(this.centerX, this.centerY, this.innerRadius, startAngle);
+
 		const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+
 		const outerArc = `M${start.x},${start.y} A${this.radius},${this.radius} 0 ${largeArcFlag} 0 ${end.x},${end.y}`;
 		const innerArc = `L${innerEnd.x},${innerEnd.y} A${this.innerRadius},${this.innerRadius} 0 ${largeArcFlag} 1 ${innerStart.x},${innerStart.y} Z`;
 
@@ -89,19 +110,20 @@ export class ChartDonutHalfComponent implements OnInit {
 	): { letter: string; position: PolarCoordinates; rotation: number }[] {
 		const letters: { letter: string; position: PolarCoordinates; rotation: number }[] = [];
 		const radius = this.radius - this.thickness / 2;
-		const totalLetters = text.replace('%', '').length;
 		const spaceBetweenLetters = 3.5;
+
 		const midAngle = (startAngle + endAngle) / 2;
-		let currentAngle = midAngle - ((totalLetters - 1) * spaceBetweenLetters) / 2;
+		let currentAngle = midAngle - ((text.length - 1) * spaceBetweenLetters) / 2;
 
 		for (let i = 0; i < text.length; i++) {
-			const position = this.polarToCartesian(0, 0, radius, currentAngle);
+			const position = this.polarToCartesian(this.centerX, this.centerY, radius, currentAngle);
 
 			letters.push({
 				letter: text[i],
 				position: position,
 				rotation: currentAngle,
 			});
+
 			currentAngle += spaceBetweenLetters;
 		}
 

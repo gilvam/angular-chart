@@ -1,6 +1,6 @@
 <div>
 	<app-chart-line
-		[width]="600"
+		[width]="400"
 		[height]="300"
 		[xLabels]="['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']"
 		[yLabels]="[0, 100, 200, 300, 400, 500, 600]"
@@ -24,11 +24,11 @@
 	<!--	</app-chart-donut-half>-->
 
 	<app-chart-donut-half
-		[values]="[
-			{ color: '#2d63d7', value: 10 },
-			{ color: '#4bbd4b', value: 20 },
-			{ color: '#FFA500', value: 30 },
-			{ color: '#50C878', value: 40 }
+		[data]="[
+			{ color: '#2d63d7', value: 10, text: '100' },
+			{ color: '#4bbd4b', value: 20, text: '200' },
+			{ color: '#FFA500', value: 30, text: '300' },
+			{ color: '#50C878', value: 40, text: '400' }
 		]"
 	/>
 </div>

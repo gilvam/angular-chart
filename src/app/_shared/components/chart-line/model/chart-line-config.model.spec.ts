@@ -1,4 +1,4 @@
-import { ChartConfig } from './chart-config.model';
+import { ChartLineConfig } from './chart-config.model';
 import { ChartCircleSizeEnum } from './chart-circle-size.enum';
 
 describe('ChartConfig', () => {
@@ -13,7 +13,7 @@ describe('ChartConfig', () => {
 	it('should be create default', () => {
 		const responseWidthYText = 20.04;
 
-		const test = new ChartConfig(width, height, circleSize, colors, gap, strokeWidth, yLabels);
+		const test = new ChartLineConfig(width, height, circleSize, colors, gap, strokeWidth, yLabels);
 
 		expect(test.width).toEqual(width);
 		expect(test.height).toEqual(height);
@@ -25,9 +25,9 @@ describe('ChartConfig', () => {
 	});
 
 	it('should be create a checkWidthYText', () => {
-		const spy = spyOn(ChartConfig.prototype as any, 'checkWidthYText').and.callThrough();
+		const spy = spyOn(ChartLineConfig.prototype as any, 'checkWidthYText').and.callThrough();
 
-		new ChartConfig(width, height, circleSize, colors, gap, strokeWidth, yLabels);
+		new ChartLineConfig(width, height, circleSize, colors, gap, strokeWidth, yLabels);
 
 		expect(spy).toHaveBeenCalledWith(yLabels);
 	});
