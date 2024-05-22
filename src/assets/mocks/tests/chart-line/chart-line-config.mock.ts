@@ -1,6 +1,6 @@
 import { ChartLineCircleSizeEnum } from '@shared/components/chart-line/model/chart-line-circle-size.enum';
 import { ChartLineConfig } from '@shared/components/chart-line/model/chart-line-config.model';
-import { mockYLabels } from './chart-y-text.mock';
+import { mockYTexts } from './chart-line-y-text.mock';
 
 export const mockChartData = [
 	[0, 10, 20],
@@ -16,5 +16,5 @@ export const mockChartConfig = new ChartLineConfig(
 	['blue'],
 	10,
 	3,
-	mockYLabels,
+	mockYTexts,
 );

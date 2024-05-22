@@ -8,12 +8,12 @@ describe('ChartLineConfig', () => {
 	const colors = ['#000000', '#FFFFFF'];
 	const gap = 30;
 	const strokeWidth = 2;
-	const yLabels = [0, 100, 200, 300];
+	const yTexts = [0, 100, 200, 300];
 
 	it('should be create default', () => {
 		const responseWidthYText = 20.04;
 
-		const test = new ChartLineConfig(width, height, circleSize, colors, gap, strokeWidth, yLabels);
+		const test = new ChartLineConfig(width, height, circleSize, colors, gap, strokeWidth, yTexts);
 
 		expect(test.width).toEqual(width);
 		expect(test.height).toEqual(height);
@@ -27,8 +27,8 @@ describe('ChartLineConfig', () => {
 	it('should be create a checkWidthYText', () => {
 		const spy = spyOn(ChartLineConfig.prototype as any, 'checkWidthYText').and.callThrough();
 
-		new ChartLineConfig(width, height, circleSize, colors, gap, strokeWidth, yLabels);
+		new ChartLineConfig(width, height, circleSize, colors, gap, strokeWidth, yTexts);
 
-		expect(spy).toHaveBeenCalledWith(yLabels);
+		expect(spy).toHaveBeenCalledWith(yTexts);
 	});
 });

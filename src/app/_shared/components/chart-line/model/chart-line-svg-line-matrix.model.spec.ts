@@ -1,7 +1,7 @@
 import { ChartLineSvgLineMatrix } from './chart-line-svg-line-matrix.model';
 import { ChartLineSvgCircleMatrix } from './chart-line-svg-circle-matrix.model';
-import { mockSvgCircles } from '@mock/tests/chart-line/svg-circle.mock';
-import { mockSvgLines } from '@mock/tests/chart-line/svg-line.mock';
+import { mockSvgCircles } from '@mock/tests/chart-line/chart-line-svg-circle.mock';
+import { mockSvgLines } from '@mock/tests/chart-line/chart-line-svg-line.mock';
 
 describe('ChartLineSvgLineMatrix', () => {
 	it('should be create default', () => {

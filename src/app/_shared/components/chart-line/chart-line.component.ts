@@ -17,9 +17,9 @@ import { ChartLineConfig } from './model/chart-line-config.model';
 export class ChartLineComponent implements OnInit {
 	@Input() width = 400;
 	@Input() height = 300;
-	@Input() yLabels = [0, 100, 200, 300, 400, 500, 600];
+	@Input() yTexts = [0, 100, 200, 300, 400, 500, 600];
 	@Input() circleSize: ChartLineCircleSizeEnum = ChartLineCircleSizeEnum.SMALL;
-	@Input() xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	@Input() xTexts = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	@Input() colors = ['#2d63d7', '#4bbd4b', '#FFA500', '#800080', '#A52A2A', '#FF6F61', '#0F52BA', '#50C878'];
 	@Input() data: (string | number)[][] = [[0, 20]];
 	@Input() gap = 30;
@@ -44,20 +44,20 @@ export class ChartLineComponent implements OnInit {
 			this.colors,
 			this.gap,
 			this.strokeWidth,
-			this.yLabels,
+			this.yTexts,
 		);
 
-		this.svgTextX.calcX(chartConfig, this.xLabels);
-		this.svgTextY.calcY(chartConfig, this.yLabels);
+		this.svgTextX.calcX(chartConfig, this.xTexts);
+		this.svgTextY.calcY(chartConfig, this.yTexts);
 
 		this.svgLineDashed = this.svgTextY.list.map((it) => new ChartLineSvgLine().calc(chartConfig, it.y));
 
 		this.svgCircleMatrix = new ChartLineSvgCircleMatrix()
-			.setData(this.data, this.xLabels)
+			.setData(this.data, this.xTexts)
 			.setRadius(this.circleSize)
 			.setStrokeWidth(this.strokeWidth)
 			.setColorByArray(this.colors)
-			.calc(chartConfig, this.svgTextX, this.yLabels, this.height, this.gap);
+			.calc(chartConfig, this.svgTextX, this.yTexts, this.height, this.gap);
 
 		this.svgLineMatrix.calc(this.svgCircleMatrix);
 	}

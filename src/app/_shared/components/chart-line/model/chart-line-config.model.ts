@@ -19,7 +19,7 @@ export class ChartLineConfig {
 		colors: string[],
 		gap: number,
 		strokeWidth: number,
-		yLabels: number[],
+		yTexts: number[],
 	) {
 		this.width = width;
 		this.height = height;
@@ -27,11 +27,11 @@ export class ChartLineConfig {
 		this.colors = colors;
 		this.gap = gap;
 		this.strokeWidth = strokeWidth;
-		this.widthYText = this.checkWidthYText(yLabels);
+		this.widthYText = this.checkWidthYText(yTexts);
 	}
 
 	private checkWidthYText(list: (number | string)[]) {
-		const countYLabel = list.reduce((max, str) => Math.max(Number(max), String(str).length), 0);
-		return Number(countYLabel) * this.fontWidthSize;
+		const countYText = list.reduce((max, str) => Math.max(Number(max), String(str).length), 0);
+		return Number(countYText) * this.fontWidthSize;
 	}
 }

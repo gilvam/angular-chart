@@ -15,12 +15,12 @@ export class ChartLineSvgCircleMatrix extends ChartLineSvgGeneric {
 	get matrix() {
 		return this._matrix;
 	}
-	setData(data: (string | number)[][], xLabels: string[]): ChartLineSvgCircleMatrix {
-		if (!data.every((row) => row.length <= xLabels.length)) {
-			throw new Error('The length of @Input() xLabels does not match the length of the @Input() data');
+	setData(data: (string | number)[][], xTexts: string[]): ChartLineSvgCircleMatrix {
+		if (!data.every((row) => row.length <= xTexts.length)) {
+			throw new Error('The length of @Input() xTexts does not match the length of the @Input() data');
 		}
-		const dataFilled = data.map((row) => [...row, ...Array(xLabels.length - row.length).fill(0)]);
-		this._matrix = dataFilled.map((row) => row.map((it, i) => new ChartLineSvgCircle(xLabels[i], it)));
+		const dataFilled = data.map((row) => [...row, ...Array(xTexts.length - row.length).fill(0)]);
+		this._matrix = dataFilled.map((row) => row.map((it, i) => new ChartLineSvgCircle(xTexts[i], it)));
 		return this;
 	}
 
@@ -50,15 +50,15 @@ export class ChartLineSvgCircleMatrix extends ChartLineSvgGeneric {
 	calc(
 		conf: ChartLineConfig,
 		svgTextX: ChartLineSvgTextList,
-		yLabels: number[],
+		yTexts: number[],
 		height: number,
 		gap: number,
 	): ChartLineSvgCircleMatrix {
 		this._matrix = this._matrix.map((row) =>
 			row.map((circle) => {
-				const labelX = svgTextX.findXByDescription(circle.dataX);
-				const cx = labelX - conf.gap + conf.widthYText + conf.widthYText / 2;
-				const cy = this.yNormalize(circle.dataY, yLabels, height, gap);
+				const TextX = svgTextX.findXByDescription(circle.dataX);
+				const cx = TextX - conf.gap + conf.widthYText + conf.widthYText / 2;
+				const cy = this.yNormalize(circle.dataY, yTexts, height, gap);
 				return new ChartLineSvgCircle(
 					circle.dataX,
 					circle.dataY,

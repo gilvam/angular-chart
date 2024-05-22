@@ -1,5 +1,5 @@
 import { ChartLineSvgLine } from './chart-line-svg-line.model';
-import { mockChartConfig } from '@mock/tests/chart-line/chart-config.mock';
+import { mockChartConfig } from '@mock/tests/chart-line/chart-line-config.mock';
 
 describe('ChartLineSvgLine', () => {
 	it('should be create default', () => {

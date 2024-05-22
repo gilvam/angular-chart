@@ -19,11 +19,11 @@ export class ChartLineSvgTextList extends ChartLineSvgGeneric {
 		return svgText?.x || 0;
 	}
 
-	calcX(conf: ChartLineConfig, xLabels: string[]): ChartLineSvgTextList {
+	calcX(conf: ChartLineConfig, xTexts: string[]): ChartLineSvgTextList {
 		const availableWidth = conf.width - conf.gap * 2 - conf.widthYText;
-		const step = availableWidth / (xLabels.length - 1);
+		const step = availableWidth / (xTexts.length - 1);
 
-		this._list = xLabels.map((desc, i) => {
+		this._list = xTexts.map((desc, i) => {
 			const x = conf.gap + i * step;
 			const y = conf.height - conf.gap + conf.gap / 4;
 			return new ChartLineSvgText(x, y, desc);
@@ -32,10 +32,10 @@ export class ChartLineSvgTextList extends ChartLineSvgGeneric {
 		return this;
 	}
 
-	calcY(conf: ChartLineConfig, yLabels: number[]): ChartLineSvgTextList {
-		this._list = yLabels.map((value) => {
+	calcY(conf: ChartLineConfig, yTexts: number[]): ChartLineSvgTextList {
+		this._list = yTexts.map((value) => {
 			const x = conf.width - conf.gap - conf.gap / 3;
-			const y = this.yNormalize(value, yLabels, conf.height, conf.gap) + conf.fontHeight;
+			const y = this.yNormalize(value, yTexts, conf.height, conf.gap) + conf.fontHeight;
 			return new ChartLineSvgText(x, y, value);
 		});
 		return this;

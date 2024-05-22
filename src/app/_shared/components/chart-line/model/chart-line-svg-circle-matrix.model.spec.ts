@@ -1,11 +1,11 @@
 import { ChartLineSvgCircleMatrix } from './chart-line-svg-circle-matrix.model';
 import { ChartLineCircleSizeEnum } from './chart-line-circle-size.enum';
 import { ChartLineSvgTextList } from './chart-line-svg-text-matrix.model';
-import { mockSvgCircles } from '@mock/tests/chart-line/svg-circle.mock';
-import { mockSvgTextList } from '@mock/tests/chart-line/svg-text.mock';
-import { mockChartDataSmall, mockChartConfig, mockChartData } from '@mock/tests/chart-line/chart-config.mock';
-import { mockXLabels, mockXLabelsSmall } from '@mock/tests/chart-line/chart-x-text.mock';
-import { mockYLabels } from '@mock/tests/chart-line/chart-y-text.mock';
+import { mockSvgCircles } from '@mock/tests/chart-line/chart-line-svg-circle.mock';
+import { mockSvgTextList } from '@mock/tests/chart-line/chart-line-svg-text.mock';
+import { mockChartDataSmall, mockChartConfig, mockChartData } from '@mock/tests/chart-line/chart-line-config.mock';
+import { mockXTexts, mockXTextsSmall } from '@mock/tests/chart-line/chart-line-x-text.mock';
+import { mockYTexts } from '@mock/tests/chart-line/chart-line-y-text.mock';
 
 describe('ChartLineSvgCircleMatrix', () => {
 	it('should be create default', () => {
@@ -19,17 +19,17 @@ describe('ChartLineSvgCircleMatrix', () => {
 	it('should be setData correctly', () => {
 		const test = new ChartLineSvgCircleMatrix(mockSvgCircles);
 
-		const response = test.setData(mockChartData, mockXLabels);
+		const response = test.setData(mockChartData, mockXTexts);
 
 		expect(response.matrix.length).toEqual(3);
 		expect(response.matrix[0].length).toEqual(3);
 		expect(response.matrix[1].length).toEqual(3);
 	});
 
-	it('should be return a ERROR if xLabels does not match the data length', () => {
+	it('should be return a ERROR if xTexts does not match the data length', () => {
 		const test = new ChartLineSvgCircleMatrix(mockSvgCircles);
 
-		const responseThrow = () => test.setData(mockChartDataSmall, mockXLabelsSmall);
+		const responseThrow = () => test.setData(mockChartDataSmall, mockXTextsSmall);
 
 		expect(responseThrow).toThrowMatching((error) => error.message.includes('The length of'));
 	});
@@ -61,7 +61,7 @@ describe('ChartLineSvgCircleMatrix', () => {
 	it('should be calc correctly', () => {
 		const test = new ChartLineSvgCircleMatrix(mockSvgCircles);
 		const svgTextX = new ChartLineSvgTextList(mockSvgTextList);
-		const response = test.calc(mockChartConfig, svgTextX, mockYLabels, 400, 20);
+		const response = test.calc(mockChartConfig, svgTextX, mockYTexts, 400, 20);
 
 		expect(response.matrix[0][0].dataX).toEqual('jan');
 		expect(response.matrix[0][0].dataY).toEqual(10);

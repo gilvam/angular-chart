@@ -1,8 +1,8 @@
 import { ChartLineSvgTextList } from './chart-line-svg-text-matrix.model';
-import { mockSvgTextList } from '@mock/tests/chart-line/svg-text.mock';
-import { mockChartConfig } from '@mock/tests/chart-line/chart-config.mock';
-import { mockXLabels } from '@mock/tests/chart-line/chart-x-text.mock';
-import { mockYLabels } from '@mock/tests/chart-line/chart-y-text.mock';
+import { mockSvgTextList } from '@mock/tests/chart-line/chart-line-svg-text.mock';
+import { mockChartConfig } from '@mock/tests/chart-line/chart-line-config.mock';
+import { mockXTexts } from '@mock/tests/chart-line/chart-line-x-text.mock';
+import { mockYTexts } from '@mock/tests/chart-line/chart-line-y-text.mock';
 
 describe('ChartLineSvgTextList', () => {
 	it('should be create default', () => {
@@ -30,7 +30,7 @@ describe('ChartLineSvgTextList', () => {
 	it('should be calc x value correctly', () => {
 		const test = new ChartLineSvgTextList(mockSvgTextList);
 
-		const response = test.calcX(mockChartConfig, mockXLabels);
+		const response = test.calcX(mockChartConfig, mockXTexts);
 
 		expect(response.list.length).toEqual(3);
 		expect(response.list[0].x | 0).toBeCloseTo(10);
@@ -44,7 +44,7 @@ describe('ChartLineSvgTextList', () => {
 	it('should be calc y value correctly', () => {
 		const test = new ChartLineSvgTextList(mockSvgTextList);
 
-		const response = test.calcY(mockChartConfig, mockYLabels);
+		const response = test.calcY(mockChartConfig, mockYTexts);
 
 		expect(response.list.length).toEqual(2);
 		expect(response.list[0].x | 0).toBeCloseTo(286);
