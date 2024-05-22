@@ -1,11 +1,12 @@
 <svg class="graph" [attr.width]="width" [attr.height]="height">
-	<path *ngFor="let segment of segments" [attr.fill]="segment.color" [attr.d]="segment.dataType"></path>
-	<ng-container *ngFor="let segment of segments">
+	<path *ngFor="let segment of segment.list" [attr.fill]="segment.color" [attr.d]="segment.dataType"></path>
+
+	<ng-container *ngFor="let segment of segment.list">
 		<ng-container *ngFor="let letter of segment.letters">
 			<text
 				[attr.x]="letter.position.x"
 				[attr.y]="letter.position.y"
-				[attr.transform]="'rotate(' + letter.rotation + ' ' + letter.position.x + ' ' + letter.position.y + ')'"
+				[attr.transform]="transformRotate(letter)"
 				text-anchor="middle"
 				alignment-baseline="middle"
 			>
@@ -13,10 +14,25 @@
 			</text>
 		</ng-container>
 	</ng-container>
-	<text class="graph__title" x="50%" [attr.y]="titlePositionY" text-anchor="middle" alignment-baseline="middle">
-		{{ data.title }}
-	</text>
-	<text class="graph__sum" x="50%" [attr.y]="sumPositionY" text-anchor="middle" alignment-baseline="middle">
-		{{ sumValues }}
-	</text>
+
+	<ng-container *ngIf="showSegmentData">
+		<text
+			class="graph__title"
+			[attr.x]="textTitle.xInPercentage"
+			[attr.y]="textTitle.y"
+			text-anchor="middle"
+			alignment-baseline="middle"
+		>
+			{{ data.title }}
+		</text>
+		<text
+			class="graph__sum"
+			[attr.x]="textSum.xInPercentage"
+			[attr.y]="textSum.y"
+			text-anchor="middle"
+			alignment-baseline="middle"
+		>
+			{{ segmentSumText }}
+		</text>
+	</ng-container>
 </svg>

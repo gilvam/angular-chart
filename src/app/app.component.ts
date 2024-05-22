@@ -10,6 +10,4 @@ import { ChartDonutHalfComponent } from '@shared/components/chart-donut-half/cha
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',
 })
-export class AppComponent {
-	title = 'angular-chart';
-}
+export class AppComponent {}

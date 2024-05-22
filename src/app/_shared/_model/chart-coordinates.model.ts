@@ -1,13 +1,48 @@
-import { ChartDonutHalfConfig } from '@shared/components/chart-donut-half/model/chart-donut-half-config.model';
-
-export class ChartCoordinates extends ChartDonutHalfConfig {
+export class ChartCoordinates {
 	private _x: number;
 	private _y: number;
+	private _angleStart: number;
+	private _angleEnd: number;
 
 	constructor(x = 0, y = 0) {
-		super();
 		this._x = x;
 		this._y = y;
+		this._angleStart = this._angleEnd = 0;
+	}
+
+	private static inPercentage(value: number): string {
+		return `${value}%`;
+	}
+
+	calc(width: number, height: number, thickness: number, gap: number, radiusOut: number) {
+		this.setX(width / 2);
+		this.setY((height + radiusOut + thickness / 2) / 2 - gap / 2);
+	}
+
+	degreesToRadians(degrees: number): number {
+		return ((degrees - this.angleStart) * Math.PI) / this.angleEnd;
+	}
+
+	polarToCartesian(radius: number, angleInDegrees: number): ChartCoordinates {
+		const angleInRadians = this.degreesToRadians(angleInDegrees);
+		return new ChartCoordinates(
+			this.x + radius * Math.cos(angleInRadians),
+			this.y + radius * Math.sin(angleInRadians),
+		);
+	}
+
+	setAngle(angleStart: number, angleEnd: number): ChartCoordinates {
+		this._angleStart = angleStart;
+		this._angleEnd = angleEnd;
+		return this;
+	}
+
+	get angleStart(): number {
+		return this._angleStart;
+	}
+
+	get angleEnd(): number {
+		return this._angleEnd;
 	}
 
 	get x(): number {
@@ -26,15 +61,11 @@ export class ChartCoordinates extends ChartDonutHalfConfig {
 		this._y = value;
 	}
 
-	degreesToRadians(degrees: number): number {
-		return ((degrees - this.startAngle) * Math.PI) / this.angle;
+	get xInPercentage(): string {
+		return ChartCoordinates.inPercentage(this.x);
 	}
 
-	polarToCartesian(radius: number, angleInDegrees: number): ChartCoordinates {
-		const angleInRadians = this.degreesToRadians(angleInDegrees);
-		return new ChartCoordinates(
-			this.x + radius * Math.cos(angleInRadians),
-			this.y + radius * Math.sin(angleInRadians),
-		);
+	get yInPercentage() {
+		return ChartCoordinates.inPercentage(this.y);
 	}
 }
