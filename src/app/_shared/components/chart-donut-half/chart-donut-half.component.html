@@ -3,7 +3,6 @@
 	<ng-container *ngFor="let segment of segments">
 		<ng-container *ngFor="let letter of segment.letters">
 			<text
-				class="graph__segment-text"
 				[attr.x]="letter.position.x"
 				[attr.y]="letter.position.y"
 				[attr.transform]="'rotate(' + letter.rotation + ' ' + letter.position.x + ' ' + letter.position.y + ')'"
@@ -14,11 +13,10 @@
 			</text>
 		</ng-container>
 	</ng-container>
-	<text class="graph__title" x="50%" y="60%" text-anchor="middle" alignment-baseline="middle">
-		{{ this.data.title }}
+	<text class="graph__title" x="50%" [attr.y]="titlePositionY" text-anchor="middle" alignment-baseline="middle">
+		{{ data.title }}
 	</text>
-
-	<text class="graph__sum" x="50%" y="70%" text-anchor="middle" alignment-baseline="middle">
-		{{ sumValues() }}
+	<text class="graph__sum" x="50%" [attr.y]="sumPositionY" text-anchor="middle" alignment-baseline="middle">
+		{{ sumValues }}
 	</text>
 </svg>

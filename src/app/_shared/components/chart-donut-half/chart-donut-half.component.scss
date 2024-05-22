@@ -2,25 +2,21 @@
 	font-family: 'Roboto', 'Open Sans', sans-serif;
 	font-size: 12px;
 	font-weight: 600;
+	display: block;
 
 	.graph {
 		background: white;
 
-		&__segment-text {
-			fill: white;
-		}
-
-		&__title,
-		&__sum {
-			font-weight: 400;
-		}
-
-		&__title {
+		.graph__title {
 			font-size: 17px;
+			margin-bottom: 8px;
+			font-weight: 400;
 			fill: #ff6f61;
 		}
-		&__sum {
+
+		.graph__sum {
 			font-size: 26px;
+			font-weight: 400;
 			fill: #ff6f61;
 		}
 	}
