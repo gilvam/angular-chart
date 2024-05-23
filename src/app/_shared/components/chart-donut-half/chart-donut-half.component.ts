@@ -60,6 +60,7 @@ export class ChartDonutHalfComponent implements AfterViewInit {
 	calcTextPositions() {
 		const offsetTittleY = 30;
 		const maxY = this.segment.maxPositionYInLetters();
+
 		this.textTitle.setY(maxY - offsetTittleY);
 		this.textSum.setY(this.textSum.y + maxY);
 	}

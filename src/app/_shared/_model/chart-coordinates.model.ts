@@ -14,9 +14,15 @@ export class ChartCoordinates {
 		return `${value}%`;
 	}
 
-	calc(width: number, height: number, thickness: number, gap: number, radiusOut: number) {
+	calc(width: number, height: number, thickness: number, gap: number, radiusOut: number): void {
 		this.setX(width / 2);
 		this.setY((height + radiusOut + thickness / 2) / 2 - gap / 2);
+	}
+
+	setAngle(angleStart: number, angleEnd: number): ChartCoordinates {
+		this._angleStart = angleStart;
+		this._angleEnd = angleEnd;
+		return this;
 	}
 
 	degreesToRadians(degrees: number): number {
@@ -29,12 +35,6 @@ export class ChartCoordinates {
 			this.x + radius * Math.cos(angleInRadians),
 			this.y + radius * Math.sin(angleInRadians),
 		);
-	}
-
-	setAngle(angleStart: number, angleEnd: number): ChartCoordinates {
-		this._angleStart = angleStart;
-		this._angleEnd = angleEnd;
-		return this;
 	}
 
 	get angleStart(): number {

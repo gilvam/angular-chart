@@ -20,7 +20,7 @@ export class ChartDonutHalfSegmentData {
 		this.setRadiusIn(this.radiusOut - thickness);
 	}
 
-	describeArc(center: ChartCoordinates, startAngle: number, endAngle: number): string {
+	calcDataTypeArc(center: ChartCoordinates, startAngle: number, endAngle: number): string {
 		const start = center.polarToCartesian(this.radiusOut, endAngle);
 		const end = center.polarToCartesian(this.radiusOut, startAngle);
 		const innerStart = center.polarToCartesian(this.radiusIn, endAngle);
@@ -46,7 +46,7 @@ export class ChartDonutHalfSegmentData {
 			const adjustedStartAngle = startAngle + totalGapAngle / 2;
 			const segmentAngle = (center.angleEnd * entry.percentage) / 100 - totalGapAngle;
 			const adjustedEndAngle = adjustedStartAngle + segmentAngle;
-			const dataType = this.describeArc(center, adjustedStartAngle, adjustedEndAngle);
+			const dataType = this.calcDataTypeArc(center, adjustedStartAngle, adjustedEndAngle);
 			const letters = this.calLetterPositions(
 				center,
 				entry.text,
