@@ -9,8 +9,8 @@ describe('ChartLineSvgLine', () => {
 		expect(test.y1).toEqual(0);
 		expect(test.x2).toEqual(0);
 		expect(test.y2).toEqual(0);
-		expect(test.color).toEqual('#ddd');
-		expect(test.strokeDasharray).toEqual(3);
+		expect(test.color).toEqual('#eee');
+		expect(test.strokeDasharray).toEqual(2);
 		expect(test.strokeWidth).toEqual(1);
 	});
 

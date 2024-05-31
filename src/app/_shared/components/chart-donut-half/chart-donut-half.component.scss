@@ -7,17 +7,23 @@
 	.graph {
 		background: white;
 
+		.graph__letter {
+			font-size: 13px;
+			font-weight: 100;
+			fill: white;
+		}
+
 		.graph__title {
 			font-size: 17px;
 			margin-bottom: 8px;
 			font-weight: 400;
-			fill: #ff6f61;
+			fill: darkgray;
 		}
 
 		.graph__sum {
 			font-size: 26px;
 			font-weight: 400;
-			fill: #ff6f61;
+			fill: darkgray;
 		}
 	}
 }

@@ -1,4 +1,12 @@
-<svg class="graph" [attr.width]="width" [attr.height]="height">
+<svg
+	class="graph"
+	[attr.width]="width"
+	[attr.height]="height"
+	appChartResize
+	[resizeEnable]="enableAutoWidth"
+	[resizeInitialWidth]="width"
+	(resizeChanged)="onWidthChanged($event)"
+>
 	<g class="graph__line-horizontal--dashed">
 		<line
 			*ngFor="let line of svgLineDashed"

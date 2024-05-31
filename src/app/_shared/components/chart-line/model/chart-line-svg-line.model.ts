@@ -10,7 +10,7 @@ export class ChartLineSvgLine extends ChartLineSvgGeneric {
 	strokeDasharray: number;
 	private _strokeWidth: number;
 
-	constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0, color = '#ddd', strokeDasharray = 3, strokeWidth = 1) {
+	constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0, color = '#eee', strokeDasharray = 2, strokeWidth = 1) {
 		super();
 		this.x1 = x1;
 		this.y1 = y1;

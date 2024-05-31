@@ -1,9 +1,10 @@
-<svg class="graph" [attr.width]="width" [attr.height]="height">
+<svg class="graph" [attr.width]="width" [attr.height]="height" appChartResize>
 	<path *ngFor="let segment of segment.list" [attr.fill]="segment.color" [attr.d]="segment.dataType"></path>
 
 	<ng-container *ngFor="let segment of segment.list">
 		<ng-container *ngFor="let letter of segment.letters">
 			<text
+				class="graph__letter"
 				[attr.x]="letter.position.x"
 				[attr.y]="letter.position.y"
 				[attr.transform]="transformRotate(letter)"

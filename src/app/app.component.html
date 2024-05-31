@@ -1,4 +1,5 @@
 <div>
+	<h2>Chart Line</h2>
 	<app-chart-line
 		[width]="400"
 		[height]="300"
@@ -12,18 +13,19 @@
 			[50.01, 100.2, 280.1, 370.7, 360.8, 500.7, 0],
 			[50, 100, 250, 300, 390, 300, 20, '10']
 		]"
+		[enableAutoWidth]="true"
 	/>
 </div>
-
 <div>
+	<h2>Chart Donut Half</h2>
 	<app-chart-donut-half
-		[width]="400"
+		[width]="350"
 		[height]="300"
-		[thickness]="30"
-		[gapBetweenSegments]="4"
+		[thickness]="27"
+		[gapBetweenSegments]="3"
 		[showSegmentData]="true"
-		[gap]="30"
-		[spaceBetweenLetters]="3"
+		[gap]="1"
+		[spaceBetweenLetters]="3.3"
 		[colors]="['#2d63d7', '#4bbd4b', '#FFA500', '#FF6F61', '#0F52BA', '#50C878', '#A52A2A']"
 		[data]="{
 			title: 'Better performance!',
@@ -36,7 +38,6 @@
 		}"
 	/>
 </div>
-
-<div>
-	<div>3</div>
-</div>
+<div><div>3</div></div>
+<div><div>4</div></div>
+<div><div>5</div></div>
