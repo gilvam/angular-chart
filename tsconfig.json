@@ -26,6 +26,7 @@
     "paths": {
       "@app/*": ["app/*"],
       "@shared/*": ["app/_shared/*"],
+      "@util/*": ["app/_shared/_util/*"],
       "@mock/*": ["assets/mocks/*"],
     }
   },
