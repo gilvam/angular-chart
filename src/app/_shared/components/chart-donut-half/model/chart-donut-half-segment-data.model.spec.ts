@@ -24,17 +24,6 @@ describe('ChartDonutHalfSegmentData', () => {
 		expect(response.radiusOut).toEqual(175);
 	});
 
-	it('should be create calcDataTypeArc', () => {
-		const data = new ChartDonutHalfSegmentData(mockChartDonutHalfSegmentList(), 20, 30);
-
-		const response = data.calcDataTypeArc(mockChartDonutHalfChartCoordinate(), 20, 30);
-
-		expect(response).withContext('M23.619714992186402,-6');
-		expect(response).withContext('A30,30 0 0 0 19');
-		expect(response).withContext('L16.18');
-		expect(response).withContext('A20,20');
-	});
-
 	it('should be create calcDataTypeArc default values', () => {
 		const coordinate = new ChartCoordinates(1, 1).setAngle(500, 500);
 		const letterList = [new ChartDonutHalfLetter('abc', 1, coordinate)];
