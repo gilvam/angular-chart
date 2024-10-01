@@ -10,6 +10,10 @@ $min-item-width: 350px;
 	padding: $gap;
 	gap: $gap;
 
+	.asdf {
+		background-color: red;
+	}
+
 	> div {
 		flex-grow: 1;
 		flex-basis: $min-item-width;
@@ -31,55 +35,3 @@ $min-item-width: 350px;
 		}
 	}
 }
-
-:host {
-	> div {
-		display: flex;
-		flex-direction: column;
-
-		h2 {
-			font: 14px Menlo;
-			margin: 0;
-			justify-content: left;
-			padding: 20px 0 0 20px;
-			height: auto;
-			width: auto;
-			color: darkgray;
-		}
-	}
-}
-
-//$min-item-width: 300px;
-//$gap: 20px;
-//
-//:host {
-//	background: darkgrey;
-//	display: flex;
-//	flex-wrap: wrap;
-//	justify-content: flex-start;
-//	gap: $gap/2;
-//	width: 100vw;
-//	height: 100vh;
-//
-//	> div {
-//		display: flex;
-//		align-items: center;
-//		justify-content: center;
-//		background-color: lightgray;
-//		flex: 1 1 auto;
-//		min-width: $min-item-width;
-//		width: 100%;
-//
-//		@media screen and (min-width: calc(2 * #{$min-item-width} + $gap)) {
-//			min-width: calc(50% - $gap);
-//		}
-//		@media screen and (min-width: calc(3 * #{$min-item-width} + $gap)) {
-//			min-width: calc(33.333% - $gap);
-//		}
-//
-//		> * {
-//			padding: $gap/2;
-//			background: cadetblue;
-//		}
-//	}
-//}
