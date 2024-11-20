@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ChartLineComponent } from '@shared/components/chart-line/chart-line.component';
 import { ChartDonutHalfComponent } from '@shared/components/chart-donut-half/chart-donut-half.component';
 import { ArrayUtil } from '@util/array.util';
+import { WINDOW } from '@shared/injection-tokens/window';
+import { WINDOW_NATIVE, WindowNative } from '@shared/injection-tokens/window-native';
 
 @Component({
 	selector: 'app-root',
-	standalone: true,
-	imports: [RouterOutlet, ChartLineComponent, ChartDonutHalfComponent],
 	templateUrl: './app.component.html',
-	styleUrl: './app.component.scss'
+	styleUrl: './app.component.scss',
+	standalone: true,
+	imports: [RouterOutlet, ChartLineComponent, ChartDonutHalfComponent]
 })
 export class AppComponent implements OnInit {
 	chartLineTextList: number[] = [];
@@ -25,11 +27,21 @@ export class AppComponent implements OnInit {
 		tree: false
 	};
 
+	constructor(
+		@Inject(WINDOW) private window: Window,
+		@Inject(WINDOW_NATIVE) private windowNative: WindowNative
+	) {}
+
 	ngOnInit() {
 		this.chartLineTextList = ArrayUtil.scaled(this.chartLineData, 6);
 
-		(Object.keys(this.flags) as Array<keyof typeof this.flags>).forEach((key) => {
+		(Object.keys(this.flags) as (keyof typeof this.flags)[]).forEach((key) => {
 			this.flags[key] = true;
 		});
+		// console.log('window by document', this.document.defaultView);
+		setTimeout(() => {
+			console.info(`window: `, (this.window as any)?.native);
+			console.info(`windowNative: `, this.windowNative.native);
+		}, 500);
 	}
 }
