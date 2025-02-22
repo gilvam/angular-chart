@@ -10,11 +10,9 @@ $min-item-width: 350px;
 	padding: $gap;
 	gap: $gap;
 
-	.asdf {
-		background-color: red;
-	}
-
 	> div {
+		display: flex;
+		flex-direction: column;
 		flex-grow: 1;
 		flex-basis: $min-item-width;
 
