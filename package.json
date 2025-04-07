@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production --base-href=/angular-chart/",
+    "build": "ng build --configuration=production --base-href=/angular-chart/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:watch": "npm run test -- --watch=true",
